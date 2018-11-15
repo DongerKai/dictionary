@@ -1,0 +1,8 @@
+server:
+  servlet:
+    context-path: /${demo.name}
+  port: 4399
+
+#系统配置
+demo:
+  name: demo
