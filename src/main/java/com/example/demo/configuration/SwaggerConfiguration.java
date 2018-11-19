@@ -26,15 +26,15 @@ public class SwaggerConfiguration {
                 .enable(!StringUtils.equals(active, "prod"))
                 .select()
                 .apis(RequestHandlerSelectors.any())
-                .paths(path-> Objects.equals(path, "/error"))
+//                .paths(path-> Objects.equals(path, "/error"))
                 .build()
                 .apiInfo(this.apiInfo());
     }
 
     private ApiInfo apiInfo(){
         return new ApiInfoBuilder()
-                .title("demo")
-                .description("demo")
+                .title("dictionary")
+                .description("dictionary")
                 .version("1.0.0")
                 .build();
     }
