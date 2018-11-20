@@ -1,4 +1,4 @@
-package com.example.dictionary.common.utils;
+package com.example.dictionary.common.model;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -6,7 +6,7 @@ import lombok.Data;
 
 @Data
 @ApiModel
-public class result {
+public class Result {
     @ApiModelProperty(name = "code", value = "错误码", example = "0")
     private String code;
 
