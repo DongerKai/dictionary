@@ -1,8 +1,8 @@
 server:
   servlet:
-    context-path: /${demo.name}
+    context-path: /${dictionary.name}
   port: 4399
 
 #系统配置
-demo:
-  name: demo
+dictionary:
+  name: dictionary
