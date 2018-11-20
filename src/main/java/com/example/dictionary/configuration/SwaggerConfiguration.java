@@ -1,4 +1,4 @@
-package com.example.demo.configuration;
+package com.example.dictionary.configuration;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Value;

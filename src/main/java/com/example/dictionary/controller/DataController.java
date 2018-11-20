@@ -1,4 +1,4 @@
-package com.example.demo.controller;
+package com.example.dictionary.controller;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -20,4 +20,6 @@ public class DataController {
     public String test(){
         return "SUCCESS";
     }
+
+
 }
