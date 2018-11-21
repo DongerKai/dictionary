@@ -5,4 +5,6 @@ public class StringConstant {
 
     public static final String DATE_FORMAT_01 = "yyyy-HH-dd HH:mm:ss";
     public static final String GMT_8 = "GMT+8";
+    public static final String CONNECTOR = "-";
+
 }

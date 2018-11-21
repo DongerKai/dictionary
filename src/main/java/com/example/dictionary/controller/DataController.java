@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import static com.example.dictionary.common.model.ApiResult.State.SUCCESS;
+import static com.example.dictionary.common.model.ApiResult.STATE.SUCCESS;
 import static com.example.dictionary.common.model.ApiResult.format;
 
 @Api(tags = "数据处理")

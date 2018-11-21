@@ -41,15 +41,15 @@ public class ApiResult {
 
     private ApiResult(){}
 
-    private ApiResult(State state){
+    public ApiResult(STATE state){
         this(state.getCode(), state.isStatus(), state.getMessage(), null);
     }
 
-    private ApiResult(State state, Object data){
+    public ApiResult(STATE state, Object data){
         this(state.getCode(), state.isStatus(), state.getMessage(), data);
     }
 
-    private ApiResult(State state, String message, Object data){
+    public ApiResult(STATE state, String message, Object data){
         this(state.getCode(), state.isStatus(), message, data);
     }
 
@@ -63,24 +63,27 @@ public class ApiResult {
         return apiResult;
     }
 
-    public static ApiResult format(State state){
+    public static ApiResult format(STATE state){
         return format(state.getCode(), state.isStatus(), state.getMessage(), null);
     }
 
-    public static ApiResult format(State state, Object data){
+    public static ApiResult format(STATE state, Object data){
         return format(state.getCode(), state.isStatus(), state.getMessage(), data);
     }
 
-    public static ApiResult format(State state, String message, Object data){
+    public static ApiResult format(STATE state, String message, Object data){
         return format(state.getCode(), state.isStatus(), message, data);
     }
 
     @AllArgsConstructor
     @Getter
-    public enum State{
+    public enum STATE{
 
         SUCCESS(0, true, "success"),
+        INVALID_PARAM(101, false, "invalid param"),
+        INVALID_PATH(102, false, "请求方式有误！"),
         SYSTEM_ERROR(9999, false, "system error");
+
 
         private int code;
         private boolean status;
