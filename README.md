@@ -2,8 +2,33 @@
 个人代码库
 
 ## 运行说明
-- 语言版本 java10
+- 语言版本 java10+tomcat9  spring boot最新版
+
 - 编译器版本 intellij idea 最新版
-    - lombok插件(Slf4j日志打印、实体类简写等)//很好用，强推⭐⭐⭐⭐
-    - easyCode插件(根据数据库自动生成实体类)//个人觉得没啥卵用
-    - SonarLint插件(代码检查插件)
+    - lombok插件(Slf4j日志打印、实体类简写等)//很好用，强推
+    - easyCode插件(根据数据库自动生成实体类)//个人觉得没啥卵用，尤其引入lombok不需要get、set方法
+    - SonarLint插件(代码检查插件)//可以帮助找出未使用的jar包，让代码变得更美观合理。但不能识别自定义断言
+    - .ignore插件(git提交忽略文件)//有点好用
+
+- maven项目编译
+
+    - 不建议使用idea自带的maven，下载依赖速度很慢
+
+    - 版本3.5.3
+
+    - 添加阿里镜像
+
+        位置`apache-maven-3.5.3\conf\settings.xml` 在mirrors标签里面添加如下
+
+        ```java
+        <mirror>
+              <id>alimaven</id>
+              <name>aliyun maven</name>
+              <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+              <mirrorOf>central</mirrorOf>        
+        </mirror>
+        ```
+
+    - 修改idea相应配置
+
+- spring boot 无需手动编译，可以直接运行
