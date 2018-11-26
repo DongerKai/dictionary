@@ -88,6 +88,10 @@ public class GlobalExceptionController extends AbstractErrorController {
         return wrapperWxception(e, SYSTEM_ERROR);
     }
 
+    /**
+     * 请求方式异常
+     */
+
     @ExceptionHandler(HttpRequestMethodNotSupportedException.class)
     public ResponseEntity exceptionHandler(HttpRequestMethodNotSupportedException e){
         return wrapperWxception(e, INVALID_PATH);
