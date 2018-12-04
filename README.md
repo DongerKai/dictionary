@@ -1,6 +1,8 @@
 # dictionary
 个人代码库
 
+[TOC]
+
 ## 运行说明
 - 语言版本 java10+tomcat9  spring boot最新版
 
@@ -31,4 +33,16 @@
 
     - 修改idea相应配置
 
-- spring boot 无需手动编译，可以直接运行
+- spring boot 无需手动编译，可以直接运行。注意mysql数据库配置。先在本地运行/doc/数据结构.sql文件
+
+- 运行启动成功之后访问http://localhost:4399/dictionary/
+
+## 代码内容
+
+### 类型互转
+
+List2String，String2List etc.
+
+Date2String，String2Date etc.
+
+日期处理
