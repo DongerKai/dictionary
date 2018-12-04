@@ -1,7 +1,8 @@
 # dictionary
 个人代码库
 
-[TOC]
+* [运行说明](#运行说明)
+* [代码内容](#代码内容)
 
 ## 运行说明
 - 语言版本 java10+tomcat9  spring boot最新版
