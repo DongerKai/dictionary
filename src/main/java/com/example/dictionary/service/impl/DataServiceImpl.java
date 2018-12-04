@@ -8,7 +8,10 @@ import com.example.dictionary.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
@@ -32,5 +35,10 @@ public class DataServiceImpl implements DataService {
     @Override
     public void addUser(UserDo user) {
         userService.insert(user);
+    }
+
+    @Override
+    public Map<String, String> qryStatusType() {
+        return Arrays.stream(UserDo.statusEnum.values()).collect(Collectors.toMap(UserDo.statusEnum::getCode,UserDo.statusEnum::getMessage));
     }
 }

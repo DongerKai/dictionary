@@ -47,5 +47,11 @@ public class DataController {
         return format(SUCCESS);
     }
 
+    @ApiOperation("获取状态枚举")
+    @GetMapping("/user/qry-status")
+    public ApiResult qryStatusType(){
+        return format(SUCCESS, dataService.qryStatusType());
+    }
+
 
 }
