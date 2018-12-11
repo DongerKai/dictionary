@@ -13,6 +13,8 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 
+import javax.validation.constraints.NotBlank;
+
 import static com.example.dictionary.common.model.ApiResult.STATE.SUCCESS;
 import static com.example.dictionary.common.model.ApiResult.format;
 
@@ -28,9 +30,9 @@ public class DataController {
 
     @ApiOperation("数据处理")
     @GetMapping("/test")
-    public ApiResult test(){
-        return format(SUCCESS);
-    }
+    public String test(){
+        return "success";
+    }//一个最简单的mvc结构
 
     @ApiOperation("分页查询列表")
     @GetMapping("/user/qry-list")
@@ -51,6 +53,13 @@ public class DataController {
     @GetMapping("/user/qry-status")
     public ApiResult qryStatusType(){
         return format(SUCCESS, dataService.qryStatusType());
+    }
+
+    @ApiOperation("匹配特殊字符")
+    @GetMapping("/tool/match")
+    public ApiResult matchSepecialCharacter(@ApiParam(name = "matchString", value = "待匹配字段", required = true) @NotBlank(message = "带匹配字段不能为空") @RequestParam(value = "matchString") String matchString){
+        log.info("matchSepecialCharacter matchString:{}", matchString);
+        return format(dataService.matchSepecialCharacter(matchString));
     }
 
 
