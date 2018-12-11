@@ -9,6 +9,9 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
+
+import static com.example.dictionary.common.constant.StringConstant.P_EMAIL;
 
 @TableName("user")
 @ApiModel(value = "user", description = "用户列表模型")
@@ -30,6 +33,7 @@ public class UserDo {
     private String name;
 
     @ApiModelProperty(name = "eMail", value = "电子邮件", required = true)
+    @Pattern(regexp = P_EMAIL, message = "请输入正确格式的电子邮件")
     private String eMail;
 
     @ApiModelProperty(name = "status", value = "状态", hidden = true)
