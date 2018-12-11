@@ -80,8 +80,9 @@ public class ApiResult {
     public enum STATE{
 
         SUCCESS(0, true, "success"),
-        INVALID_PARAM(101, false, "invalid param"),
-        INVALID_PATH(102, false, "请求方式有误！"),
+        INVALID_PARAM(1001, false, "invalid param"),
+        INVALID_PATH(1002, false, "请求方式有误！"),
+        SPECIAL_CHARACTER_EXIST(2001, false, "存在特殊字符！"),
         SYSTEM_ERROR(9999, false, "system error");
 
 
