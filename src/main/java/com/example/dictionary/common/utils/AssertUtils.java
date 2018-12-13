@@ -1,11 +1,14 @@
 package com.example.dictionary.common.utils;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.example.dictionary.common.exception.DictionaryException;
 import com.example.dictionary.common.model.ApiResult.STATE;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.Collection;
-import java.util.Collections;
+import java.util.List;
 
 public class AssertUtils {
 
@@ -20,11 +23,11 @@ public class AssertUtils {
             throw new DictionaryException(state, message);
     }
 
-    public static void notNull(Object object, STATE state){
-        notNull(object, state, null);
+    public static void isNotNull(Object object, STATE state){
+        isNotNull(object, state, null);
     }
 
-    public static void notNull(Object object, STATE state, String message){
+    public static void isNotNull(Object object, STATE state, String message){
         if (object == null)
             throw new DictionaryException(state, message);
     }
@@ -46,4 +49,99 @@ public class AssertUtils {
         if (collection != null && !collection.isEmpty())
             throw new DictionaryException(state, message);
     }
+
+    public static void isNotEmpty(Collection<?> collection, STATE state){
+        isNotEmpty(collection, state, null);
+    }
+
+    public static void isNotEmpty(Collection<?> collection, STATE state, String message){
+        if (collection == null || collection.isEmpty())
+            throw new DictionaryException(state, message);
+    }
+
+    public static void isBlank(String var, STATE state){
+        isBlank(var, state, null);
+    }
+
+    public static void isBlank(String var, STATE state, String message){
+        if (StringUtils.isNotBlank(var))
+            throw new DictionaryException(state, message);
+    }
+
+    public static void isNotBlank(String var, STATE state){
+        isNotBlank(var, state, null);
+    }
+
+    public static void isNotBlank(String var, STATE state, String message){
+        if (StringUtils.isBlank(var))
+            throw new DictionaryException(state, message);
+    }
+
+    public static void isTrue(boolean flag, STATE state){
+        isTrue(flag, state, null);
+    }
+
+    public static void isTrue(boolean flag, STATE state, String message){
+        if (!flag)
+            throw new DictionaryException(state, message);
+    }
+
+    public static void isFalse(boolean flag, STATE state){
+        isFalse(flag, state, null);
+    }
+
+    public static void isFalse(boolean flag, STATE  state, String message){
+        if (flag)
+            throw new DictionaryException(state, message);
+    }
+
+    public static JSONObject isJsonObject(String var, STATE state){ return isJsonObject(var, state, null);}
+
+    public static JSONObject isJsonObject(String var, STATE state, String message){
+        if (StringUtils.isNotBlank(var))
+            try {
+                return JSONObject.parseObject(var);
+            }catch (Exception e){
+
+            }
+        throw new DictionaryException(state, message);
+    }
+
+    public static JSONArray isJsonArray(String var, STATE state){return isJsonArray(var, state, null);}
+
+    public static JSONArray isJsonArray(String var, STATE state, String message){
+        if (StringUtils.isNotBlank(var))
+            try {
+                return JSONArray.parseArray(var);
+            }catch (Exception e){
+
+            }
+        throw new DictionaryException(state, message);
+    }
+
+    public static <T> List<T> parseArray(String var, STATE state, Class<T> clazz){return parseArray(var, state, null);}
+
+    public static <T> List<T> parseArray(String var, STATE state, Class<T> clazz, String message){
+        if (StringUtils.isNotBlank(var))
+            try {
+                return JSON.parseArray(var, clazz);
+            }catch (Exception e){
+
+            }
+        throw new DictionaryException(state, message);
+    }
+
+    public static <T> T parseObject(String var, STATE state, Class<T> clazz){return parseObject(var, state, null);}
+
+    public static <T> T parseObject(String var, STATE state, Class<T> clazz, String message){
+        if (StringUtils.isNotBlank(var))
+            try {
+                return JSON.parseObject(var, clazz);
+            }catch (Exception e){
+
+            }
+        throw new DictionaryException(state, message);
+    }
+
+
 }
