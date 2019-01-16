@@ -102,7 +102,7 @@ public class AssertUtils {
             try {
                 return JSONObject.parseObject(var);
             }catch (Exception e){
-
+                //
             }
         throw new DictionaryException(state, message);
     }
@@ -114,31 +114,31 @@ public class AssertUtils {
             try {
                 return JSONArray.parseArray(var);
             }catch (Exception e){
-
+                //
             }
         throw new DictionaryException(state, message);
     }
 
-    public static <T> List<T> parseArray(String var, STATE state, Class<T> clazz){return parseArray(var, state, null);}
+    public static <T> List<T> parseArray(String var, STATE state, Class<T> clazz){return parseArray(var, state, clazz, null);}
 
     public static <T> List<T> parseArray(String var, STATE state, Class<T> clazz, String message){
         if (StringUtils.isNotBlank(var))
             try {
                 return JSON.parseArray(var, clazz);
             }catch (Exception e){
-
+                //
             }
         throw new DictionaryException(state, message);
     }
 
-    public static <T> T parseObject(String var, STATE state, Class<T> clazz){return parseObject(var, state, null);}
+    public static <T> T parseObject(String var, STATE state, Class<T> clazz){return parseObject(var, state, clazz, null);}
 
     public static <T> T parseObject(String var, STATE state, Class<T> clazz, String message){
         if (StringUtils.isNotBlank(var))
             try {
                 return JSON.parseObject(var, clazz);
             }catch (Exception e){
-
+                //
             }
         throw new DictionaryException(state, message);
     }
