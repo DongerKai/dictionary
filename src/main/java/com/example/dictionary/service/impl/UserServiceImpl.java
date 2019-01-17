@@ -9,6 +9,8 @@ import com.example.dictionary.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @AllArgsConstructor
 public class UserServiceImpl extends AbstractBaseService<UserMapper, UserDo> implements UserService {
@@ -20,5 +22,10 @@ public class UserServiceImpl extends AbstractBaseService<UserMapper, UserDo> imp
         Page<UserDo> page = new Page<>();
         page.setRecords(userMapper.qryUserList(page));
         return formatPageInfo(page);
+    }
+
+    @Override
+    public List<UserDo> selectUserList() {
+        return userMapper.selectUserList();
     }
 }

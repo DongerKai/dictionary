@@ -4,6 +4,7 @@ import com.example.dictionary.base.model.PageInfo;
 import com.example.dictionary.common.model.ApiResult;
 import com.example.dictionary.model.dataObject.UserDo;
 
+import javax.servlet.ServletOutputStream;
 import java.util.Map;
 
 public interface DataService {
@@ -15,5 +16,7 @@ public interface DataService {
     Map<String, String> qryStatusType();
 
     ApiResult.STATE matchSepecialCharacter(String matchString);
+
+    void exportUserExcel(ServletOutputStream stream);
 
 }

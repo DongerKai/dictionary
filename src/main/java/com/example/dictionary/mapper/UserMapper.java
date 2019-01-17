@@ -11,4 +11,7 @@ public interface UserMapper extends BaseMapper<UserDo> {
 
     @Select("SELECT * FROM user")
     List<UserDo> qryUserList(Pagination page);
+
+    @Select("SELECT * FROM user")
+    List<UserDo> selectUserList();
 }

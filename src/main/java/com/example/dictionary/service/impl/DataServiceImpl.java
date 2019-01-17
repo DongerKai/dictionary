@@ -2,6 +2,7 @@ package com.example.dictionary.service.impl;
 
 import com.alibaba.fastjson.JSONArray;
 import com.example.dictionary.base.model.PageInfo;
+import com.example.dictionary.common.exception.DictionaryException;
 import com.example.dictionary.common.model.ApiResult;
 import com.example.dictionary.common.utils.CatchExceptionUtils;
 import com.example.dictionary.model.dataObject.UserDo;
@@ -12,15 +13,19 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateFormatUtils;
 import org.apache.commons.lang3.time.DateUtils;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.ServletOutputStream;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
-import static com.example.dictionary.common.constant.StringConstant.DATE_FORMAT_01;
-import static com.example.dictionary.common.constant.StringConstant.P_SPECIAL_CHARACTER;
+import static com.example.dictionary.common.constant.StringConstant.*;
 import static com.example.dictionary.common.model.ApiResult.STATE.*;
 
 @Service
@@ -73,5 +78,24 @@ public class DataServiceImpl implements DataService {
         if (matcher.find())
             return SPECIAL_CHARACTER_EXIST;
         else return SUCCESS;
+    }
+
+    @Override
+    public void exportUserExcel(ServletOutputStream stream) {
+        List<UserDo> userList = userService.selectUserList();
+        try (Workbook wb = new HSSFWorkbook()){
+            Sheet sheet =wb.createSheet(USER_LIST);
+            for (int i =0; i < userList.size(); i++){
+                Row row = sheet.createRow(i);
+                row.createCell(0).setCellValue(userList.get(i).getId());
+                row.createCell(1).setCellValue(userList.get(i).getName());
+                row.createCell(2).setCellValue(userList.get(i).getAccount());
+                row.createCell(3).setCellValue(userList.get(i).getEMail());
+            }
+            wb.write(stream);
+        } catch (Exception e){
+            log.error("exportUserExcel error:{}", e.getMessage());
+            throw new DictionaryException(SYSTEM_ERROR);
+        }
     }
 }
