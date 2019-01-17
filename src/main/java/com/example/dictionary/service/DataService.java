@@ -15,7 +15,7 @@ public interface DataService {
 
     Map<String, String> qryStatusType();
 
-    ApiResult.STATE matchSepecialCharacter(String matchString);
+    ApiResult.STATE matchSpecialCharacter(String matchString);
 
     void exportUserExcel(ServletOutputStream stream);
 
