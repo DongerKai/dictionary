@@ -61,9 +61,9 @@ public class DataController {
 
     @ApiOperation("匹配特殊字符")
     @GetMapping("/tool/match")
-    public ApiResult matchSepecialCharacter(@ApiParam(name = "matchString", value = "待匹配字段", required = true) @NotBlank(message = "带匹配字段不能为空") @RequestParam(value = "matchString") String matchString){
-        log.info("matchSepecialCharacter matchString:{}", matchString);
-        return format(dataService.matchSepecialCharacter(matchString));
+    public ApiResult matchSpecialCharacter(@ApiParam(name = "matchString", value = "待匹配字段", required = true) @NotBlank(message = "带匹配字段不能为空") @RequestParam(value = "matchString") String matchString){
+        log.info("matchSpecialCharacter matchString:{}", matchString);
+        return format(dataService.matchSpecialCharacter(matchString));
     }
 
     @ApiOperation("下载excel文件")
@@ -74,6 +74,8 @@ public class DataController {
         response.setContentType("application/octet-stream; charset=utf-8");
         response.setHeader("content-disposition", "attachment;filename="+ URLEncoder.encode("用户列表.xls", CHARSET_UTF_8));
     }
+
+
 
 
 }

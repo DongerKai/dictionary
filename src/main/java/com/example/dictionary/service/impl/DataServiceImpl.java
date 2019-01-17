@@ -72,7 +72,7 @@ public class DataServiceImpl implements DataService {
     }
 
     @Override
-    public ApiResult.STATE matchSepecialCharacter(String matchString) {
+    public ApiResult.STATE matchSpecialCharacter(String matchString) {
         Pattern pattern = Pattern.compile(P_SPECIAL_CHARACTER);
         Matcher matcher = pattern.matcher(matchString);
         if (matcher.find())
