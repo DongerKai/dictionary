@@ -13,8 +13,12 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.constraints.NotBlank;
 
+import java.net.URLEncoder;
+
+import static com.example.dictionary.common.constant.StringConstant.CHARSET_UTF_8;
 import static com.example.dictionary.common.model.ApiResult.STATE.SUCCESS;
 import static com.example.dictionary.common.model.ApiResult.format;
 
@@ -60,6 +64,15 @@ public class DataController {
     public ApiResult matchSepecialCharacter(@ApiParam(name = "matchString", value = "待匹配字段", required = true) @NotBlank(message = "带匹配字段不能为空") @RequestParam(value = "matchString") String matchString){
         log.info("matchSepecialCharacter matchString:{}", matchString);
         return format(dataService.matchSepecialCharacter(matchString));
+    }
+
+    @ApiOperation("下载excel文件")
+    @GetMapping("/user/export-excel")
+    public void exportUserExcel(HttpServletResponse response) throws Exception{
+        dataService.exportUserExcel(response.getOutputStream());
+        response.setContentType("text/html; charset=UTF-8");
+        response.setContentType("application/octet-stream; charset=utf-8");
+        response.setHeader("content-disposition", "attachment;filename="+ URLEncoder.encode("用户列表.xls", CHARSET_UTF_8));
     }
 
 

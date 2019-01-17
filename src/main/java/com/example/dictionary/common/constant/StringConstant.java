@@ -7,6 +7,8 @@ public class StringConstant {
     public static final String DATE_FORMAT_01 = "yyyy-HH-dd HH:mm:ss";
     public static final String GMT_8 = "GMT+8";
     public static final String CONNECTOR = "-";
+    public static final String CHARSET_UTF_8 = "UTF-8";
+    public static final String USER_LIST = "用户列表";
 
     /*=====================================正则匹配==============================*/
     public static final String P_SPECIAL_CHARACTER = "[%./\\\\?*:|<>$@]";//特殊字符
