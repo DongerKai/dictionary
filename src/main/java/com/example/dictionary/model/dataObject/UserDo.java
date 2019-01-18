@@ -1,8 +1,10 @@
 package com.example.dictionary.model.dataObject;
 
+import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableLogic;
 import com.baomidou.mybatisplus.annotations.TableName;
+import com.baomidou.mybatisplus.enums.FieldStrategy;
 import com.baomidou.mybatisplus.enums.IdType;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -10,6 +12,8 @@ import lombok.*;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
+
+import java.util.List;
 
 import static com.example.dictionary.common.constant.StringConstant.P_EMAIL;
 
@@ -39,6 +43,10 @@ public class UserDo {
     @ApiModelProperty(name = "status", value = "状态", hidden = true)
     @TableLogic
     private String status;
+
+    @ApiModelProperty(name = "urls", value = "列表备注")
+    @TableField(strategy= FieldStrategy.IGNORED)
+    private List<String> urls;
 
     @Getter
     @AllArgsConstructor
