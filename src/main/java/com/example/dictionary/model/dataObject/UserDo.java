@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.annotations.TableLogic;
 import com.baomidou.mybatisplus.annotations.TableName;
 import com.baomidou.mybatisplus.enums.FieldStrategy;
 import com.baomidou.mybatisplus.enums.IdType;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
@@ -34,6 +35,7 @@ public class UserDo {
 
     @ApiModelProperty(name = "name", value = "用户名", required = true)
     @NotBlank(message = "用户名不能为空")
+    @JsonProperty("uname")
     private String name;
 
     @ApiModelProperty(name = "eMail", value = "电子邮件", required = true)
