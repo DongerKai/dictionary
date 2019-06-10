@@ -6,6 +6,9 @@ import com.baomidou.mybatisplus.annotations.TableLogic;
 import com.baomidou.mybatisplus.annotations.TableName;
 import com.baomidou.mybatisplus.enums.FieldStrategy;
 import com.baomidou.mybatisplus.enums.IdType;
+import com.example.dictionary.base.api.AttrEnum;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
@@ -34,6 +37,7 @@ public class UserDo {
 
     @ApiModelProperty(name = "name", value = "用户名", required = true)
     @NotBlank(message = "用户名不能为空")
+    @JsonProperty("uname")
     private String name;
 
     @ApiModelProperty(name = "eMail", value = "电子邮件", required = true)
@@ -50,11 +54,12 @@ public class UserDo {
 
     @Getter
     @AllArgsConstructor
-    public enum statusEnum{
-        EXIST("1", "存在"),
-        DELETED("0", "已删除");
+    @JsonFormat(shape = JsonFormat.Shape.OBJECT)
+    public enum statusEnum implements AttrEnum {
+        ON(0, "ON"),
+        OFF(1, "OFF");
 
-        private String code;
-        private String message;
+        private Integer key;
+        private String value;
     }
 }

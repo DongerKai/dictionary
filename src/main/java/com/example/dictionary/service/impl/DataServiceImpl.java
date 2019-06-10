@@ -2,6 +2,7 @@ package com.example.dictionary.service.impl;
 
 import com.alibaba.fastjson.JSONArray;
 import com.example.dictionary.base.model.PageInfo;
+import com.example.dictionary.base.properties.DictionaryProperties;
 import com.example.dictionary.common.exception.DictionaryException;
 import com.example.dictionary.common.model.ApiResult;
 import com.example.dictionary.common.utils.CatchExceptionUtils;
@@ -10,13 +11,14 @@ import com.example.dictionary.service.DataService;
 import com.example.dictionary.service.UserService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateFormatUtils;
 import org.apache.commons.lang3.time.DateUtils;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.ServletOutputStream;
@@ -34,6 +36,8 @@ import static com.example.dictionary.common.model.ApiResult.STATE.*;
 public class DataServiceImpl implements DataService {
 
     private UserService userService;
+    private DictionaryProperties dictionaryProperties;
+    private JavaMailSender mailSender;
 
     private void List2String(List<Object> list){
         String str = JSONArray.toJSONString(list);
@@ -54,8 +58,8 @@ public class DataServiceImpl implements DataService {
     }
 
     @Override
-    public Map<String, String> qryStatusType() {
-        return Arrays.stream(UserDo.statusEnum.values()).collect(Collectors.toMap(UserDo.statusEnum::getCode,UserDo.statusEnum::getMessage));
+    public Map<Integer, String> qryStatusType() {
+        return Arrays.stream(UserDo.statusEnum.values()).collect(Collectors.toMap(UserDo.statusEnum::getKey,UserDo.statusEnum::getValue));
     }
 
     private void dateChange(){
@@ -97,5 +101,16 @@ public class DataServiceImpl implements DataService {
             log.error("exportUserExcel error:{}", e.getMessage());
             throw new DictionaryException(SYSTEM_ERROR);
         }
+    }
+
+    @Override
+    public void sendEmail(String to, String subject, String text) {
+        String from = dictionaryProperties.getFrom();
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setFrom(from);
+        message.setTo(to);
+        message.setSubject(subject);
+        message.setText(text);
+        mailSender.send(message);
     }
 }

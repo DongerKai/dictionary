@@ -13,10 +13,12 @@ public interface DataService {
 
     void addUser(UserDo user);
 
-    Map<String, String> qryStatusType();
+    Map<Integer, String> qryStatusType();
 
     ApiResult.STATE matchSpecialCharacter(String matchString);
 
     void exportUserExcel(ServletOutputStream stream);
+
+    void sendEmail(String to, String subject, String text);
 
 }

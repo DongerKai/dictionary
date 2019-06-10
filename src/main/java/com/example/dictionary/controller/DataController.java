@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 
 import java.net.URLEncoder;
@@ -73,6 +74,17 @@ public class DataController {
         response.setContentType("text/html; charset=UTF-8");
         response.setContentType("application/octet-stream; charset=utf-8");
         response.setHeader("content-disposition", "attachment;filename="+ URLEncoder.encode("用户列表.xls", CHARSET_UTF_8));
+    }
+
+    @ApiOperation("发送电子邮件")
+    @PostMapping("/user/email")
+    public void sendEmail(@ApiParam(name = "to", value = "发送的电子邮件", required = true)
+                          @NotBlank(message = "电子邮件地址不能为空！") @Email(message = "电子邮件格式不正确@") @RequestParam(value = "to") String to,
+                          @ApiParam(name = "subject", value = "电子邮件主题", required = true)
+                          @NotBlank(message = "电子邮件主题不能为空！") @RequestParam(value = "subject") String subject,
+                          @ApiParam(name = "text", value = "电子邮件正文", required = true)
+                          @NotBlank(message = "电子邮件正文不能为空！") @RequestParam(value = "text") String text){
+        dataService.sendEmail(to, subject, text);
     }
 
 
