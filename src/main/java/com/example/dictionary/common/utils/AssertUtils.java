@@ -3,6 +3,7 @@ package com.example.dictionary.common.utils;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.example.dictionary.base.api.ApiState;
 import com.example.dictionary.common.exception.DictionaryException;
 import com.example.dictionary.common.model.ApiResult.STATE;
 import org.apache.commons.lang3.StringUtils;
@@ -14,22 +15,22 @@ public class AssertUtils {
 
     private AssertUtils(){}
 
-    public static void equals(String var1, String var2, STATE state){
+    public static void equals(String var1, String var2, ApiState state){
         equals(var1, var2, state, null);
     }
 
-    public static void equals(String var1, String var2, STATE state, String message){
+    public static void equals(String var1, String var2, ApiState state, String message){
         if (!StringUtils.equals(var1, var2))
-            throw new DictionaryException(state, message);
+            throw DictionaryException.create(state, message);
     }
 
-    public static void isNotNull(Object object, STATE state){
+    public static void isNotNull(Object object, ApiState state){
         isNotNull(object, state, null);
     }
 
-    public static void isNotNull(Object object, STATE state, String message){
+    public static void isNotNull(Object object, ApiState state, String message){
         if (object == null)
-            throw new DictionaryException(state, message);
+            throw DictionaryException.create(state, message);
     }
 
     public static void isNull(Object object, STATE state){
@@ -38,7 +39,7 @@ public class AssertUtils {
 
     public static void isNull(Object object, STATE state, String message){
         if (object != null)
-            throw new DictionaryException(state, message);
+            throw DictionaryException.create(state, message);
     }
 
     public static void isEmpty(Collection<?> collection, STATE state){
@@ -47,7 +48,7 @@ public class AssertUtils {
 
     public static void isEmpty(Collection<?> collection, STATE state, String message){
         if (collection != null && !collection.isEmpty())
-            throw new DictionaryException(state, message);
+            throw DictionaryException.create(state, message);
     }
 
     public static void isNotEmpty(Collection<?> collection, STATE state){
@@ -56,7 +57,7 @@ public class AssertUtils {
 
     public static void isNotEmpty(Collection<?> collection, STATE state, String message){
         if (collection == null || collection.isEmpty())
-            throw new DictionaryException(state, message);
+            throw DictionaryException.create(state, message);
     }
 
     public static void isBlank(String var, STATE state){
@@ -65,7 +66,7 @@ public class AssertUtils {
 
     public static void isBlank(String var, STATE state, String message){
         if (StringUtils.isNotBlank(var))
-            throw new DictionaryException(state, message);
+            throw DictionaryException.create(state, message);
     }
 
     public static void isNotBlank(String var, STATE state){
@@ -74,7 +75,7 @@ public class AssertUtils {
 
     public static void isNotBlank(String var, STATE state, String message){
         if (StringUtils.isBlank(var))
-            throw new DictionaryException(state, message);
+            throw DictionaryException.create(state, message);
     }
 
     public static void isTrue(boolean flag, STATE state){
@@ -83,7 +84,7 @@ public class AssertUtils {
 
     public static void isTrue(boolean flag, STATE state, String message){
         if (!flag)
-            throw new DictionaryException(state, message);
+            throw DictionaryException.create(state, message);
     }
 
     public static void isFalse(boolean flag, STATE state){
@@ -92,7 +93,7 @@ public class AssertUtils {
 
     public static void isFalse(boolean flag, STATE  state, String message){
         if (flag)
-            throw new DictionaryException(state, message);
+            throw DictionaryException.create(state, message);
     }
 
     public static JSONObject isJsonObject(String var, STATE state){ return isJsonObject(var, state, null);}
@@ -104,7 +105,7 @@ public class AssertUtils {
             }catch (Exception e){
                 //
             }
-        throw new DictionaryException(state, message);
+        throw DictionaryException.create(state, message);
     }
 
     public static JSONArray isJsonArray(String var, STATE state){return isJsonArray(var, state, null);}
@@ -116,7 +117,7 @@ public class AssertUtils {
             }catch (Exception e){
                 //
             }
-        throw new DictionaryException(state, message);
+        throw DictionaryException.create(state, message);
     }
 
     public static <T> List<T> parseArray(String var, STATE state, Class<T> clazz){return parseArray(var, state, clazz, null);}
@@ -128,7 +129,7 @@ public class AssertUtils {
             }catch (Exception e){
                 //
             }
-        throw new DictionaryException(state, message);
+        throw DictionaryException.create(state, message);
     }
 
     public static <T> T parseObject(String var, STATE state, Class<T> clazz){return parseObject(var, state, clazz, null);}
@@ -140,7 +141,7 @@ public class AssertUtils {
             }catch (Exception e){
                 //
             }
-        throw new DictionaryException(state, message);
+        throw DictionaryException.create(state, message);
     }
 
 

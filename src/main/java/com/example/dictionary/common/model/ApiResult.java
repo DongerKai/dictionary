@@ -1,5 +1,6 @@
 package com.example.dictionary.common.model;
 
+import com.example.dictionary.base.api.ApiState;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -77,7 +78,7 @@ public class ApiResult {
 
     @AllArgsConstructor
     @Getter
-    public enum STATE{
+    public enum STATE implements ApiState {
 
         SUCCESS(0, true, "success"),
         INVALID_PARAM(1001, false, "invalid param"),

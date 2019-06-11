@@ -1,21 +1,52 @@
 package com.example.dictionary.common.exception;
 
-import com.example.dictionary.common.model.ApiResult;
-import lombok.Data;
+import com.example.dictionary.base.api.ApiState;
+import lombok.Getter;
 
-@Data
 public class DictionaryException extends RuntimeException{
-    private static final long serialVersionUID = 4564124491192825231L;
+    @Getter
+    private final ApiState state;
 
-    private ApiResult.STATE state;
-
-    public DictionaryException(ApiResult.STATE state){
-        super();
-        this.setState(state);
+    private DictionaryException(ApiState state){
+        this(state, state.getMessage());
     }
 
-    public DictionaryException(ApiResult.STATE state, String message){
+    private DictionaryException(ApiState state, String message){
         super(message);
-        this.setState(state);
+        this.state = state;
+    }
+
+    private DictionaryException(int code, boolean status, String message){
+        super(message);
+        this.state = new ApiState() {
+            @Override
+            public int getCode() {
+                return code;
+            }
+
+            @Override
+            public boolean isStatus() {
+                return status;
+            }
+
+            @Override
+            public String getMessage() {
+                return message;
+            }
+        };
+    }
+
+    public static DictionaryException create (int code, boolean status, String message){
+        return new DictionaryException(code, status, message);
+    }
+
+    public static DictionaryException create(ApiState state){
+        return new DictionaryException(state);
+    }
+
+    public static DictionaryException create(ApiState state, String message){
+        if (message == null)
+            return new DictionaryException(state);
+        return new DictionaryException(state, message);
     }
 }
