@@ -77,6 +77,5 @@ public class ToolController {
             ServletOutputStream out = response.getOutputStream();
             IoUtils.pipe(in, out);
         }
-
     }
 }

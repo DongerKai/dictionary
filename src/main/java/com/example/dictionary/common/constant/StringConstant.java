@@ -34,6 +34,7 @@ public class StringConstant {
     @Getter
     @AllArgsConstructor
     public enum State implements ApiState{
+        DOWNLOAD_FILE_PATH_WRONG(2002, false, "文件下载地址有误"),
         FILE_NAME_EXIST_FAIL(2001, false, "原始文件名丢失！");
 
         private int code;
