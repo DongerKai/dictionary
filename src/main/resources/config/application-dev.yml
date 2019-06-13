@@ -8,6 +8,15 @@ dictionary:
   name: dictionary
   from: koekchan@163.com
 
+#minIO配置
+#server位置：D:\photo
+minio:
+  endpoint: http://127.0.0.1:9000
+  key:
+    access: 66K6QAKC0NC4O65HM1SZ
+    secret: +ETTDODsitSxUe+CiXp5ypMFEjwcv7IcFbQaiMtm
+  url: /minio/%s/%s
+
 # db redis
 spring:
   datasource:
