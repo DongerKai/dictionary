@@ -1,5 +1,9 @@
 package com.example.dictionary.common.constant;
 
+import com.example.dictionary.base.api.ApiState;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+
 public class StringConstant {
     private StringConstant(){}
 
@@ -9,6 +13,9 @@ public class StringConstant {
     public static final String CONNECTOR = "-";
     public static final String CHARSET_UTF_8 = "UTF-8";
     public static final String USER_LIST = "用户列表";
+    public static final String BLANK = "";
+    public static final String DOT = ".";
+    public static final String SLASH = "/";
 
     /*=====================================正则匹配==============================*/
     public static final String P_SPECIAL_CHARACTER = "[%./\\\\?*:|<>$@]";//特殊字符
@@ -20,4 +27,17 @@ public class StringConstant {
     public static final String P_CHINESE_ENGLISH_NUMBER = "^[\u4e00-\u9fa5a-zA-Z0-9]+$";//匹配中文、字母和数字
     public static final String P_EMAIL = "^[a-zA-Z0-9_]+@[a-zA-Z0-9]+(\\.[a-zA-Z0-9]+)+$";//匹配eMail
     public static final String P_NATURAL_NUMBER = "^[0-9]+$";//自然数
+    public static final String P_FILE_NAME = ".*\\.";
+
+
+    /*==================================自定义错误===============================*/
+    @Getter
+    @AllArgsConstructor
+    public enum State implements ApiState{
+        FILE_NAME_EXIST_FAIL(2001, false, "原始文件名丢失！");
+
+        private int code;
+        private boolean status;
+        private String message;
+    }
 }

@@ -99,7 +99,7 @@ public class DataServiceImpl implements DataService {
             wb.write(stream);
         } catch (Exception e){
             log.error("exportUserExcel error:{}", e.getMessage());
-            throw new DictionaryException(SYSTEM_ERROR);
+            throw DictionaryException.create(SYSTEM_ERROR);
         }
     }
 

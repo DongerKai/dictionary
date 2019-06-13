@@ -14,7 +14,7 @@ public class CatchExceptionUtils {
         try {
             return action.apply();
         } catch (Exception e){
-            throw new DictionaryException(SYSTEM_ERROR, e.getMessage());
+            throw DictionaryException.create(SYSTEM_ERROR, e.getMessage());
         }
     }
 

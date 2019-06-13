@@ -50,7 +50,7 @@ public class SwaggerConfiguration {
                 .enable(!StringUtils.equals(active, "prod"))
                 .select()
                 .apis(RequestHandlerSelectors.any())
-                .paths(path-> StringUtils.startsWithIgnoreCase(path, "/data/tool"))
+                .paths(path-> StringUtils.startsWithIgnoreCase(path, "/tool"))
                 .build()
                 .apiInfo(this.apiInfo());
     }

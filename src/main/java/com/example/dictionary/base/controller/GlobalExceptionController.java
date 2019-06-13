@@ -60,7 +60,7 @@ public class GlobalExceptionController extends AbstractErrorController {
             MissingServletRequestParameterException temp = (MissingServletRequestParameterException)e;
             message = INVALID_PARAM.getMessage() + " " + temp.getParameterName();
         }
-        ApiResult result = new ApiResult(INVALID_PARAM);
+        ApiResult result = ApiResult.format(INVALID_PARAM);
         if (StringUtils.isNotBlank(message))
             result.setMessage(message);
         return ResponseEntity.status(HttpStatus.OK).body(result);
@@ -73,7 +73,7 @@ public class GlobalExceptionController extends AbstractErrorController {
     @ExceptionHandler(DictionaryException.class)
     public ResponseEntity dicExceptionHandler(DictionaryException e){
         log.warn("处理异常|{}|{}", e.getState(), e.getMessage());
-        ApiResult result = new ApiResult(e.getState());
+        ApiResult result = ApiResult.format(e.getState());
         if (StringUtils.isNotBlank(e.getMessage()))
             result.setMessage(e.getMessage());
         return ResponseEntity.status(HttpStatus.OK).body(result);
@@ -85,7 +85,7 @@ public class GlobalExceptionController extends AbstractErrorController {
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity exceptionHandler(Exception e){
-        return wrapperWxception(e, SYSTEM_ERROR);
+        return wrapperException(e, SYSTEM_ERROR);
     }
 
     /**
@@ -94,12 +94,12 @@ public class GlobalExceptionController extends AbstractErrorController {
 
     @ExceptionHandler(HttpRequestMethodNotSupportedException.class)
     public ResponseEntity exceptionHandler(HttpRequestMethodNotSupportedException e){
-        return wrapperWxception(e, INVALID_PATH);
+        return wrapperException(e, INVALID_PATH);
     }
 
-    private ResponseEntity wrapperWxception(Exception e, ApiResult.STATE state){
+    private ResponseEntity wrapperException(Exception e, ApiResult.STATE state){
         log.error("系统异常:{}", e);
-        ApiResult result = new ApiResult(state);
+        ApiResult result = ApiResult.format(state);
         return ResponseEntity.status(HttpStatus.OK).body(result);
     }
 
