@@ -1,8 +1,6 @@
 # dictionary
 个人代码库
 
-[TOC]
-
 [运行说明](#运行说明)
 
 [代码内容](#代码内容)
@@ -11,6 +9,7 @@
 * [日期处理](#日期处理)
 * [提供接口方式](#提供接口方式)
 * [定时任务](#定时任务)
+* [MinIO文件上传和下载](#MinIO文件上传和下载)
 
 ## 运行说明
 - 语言版本 java10+tomcat9  spring boot最新版
@@ -63,4 +62,18 @@ Date2String，String2Date etc.
 实体类型类字段提供枚举接口
 ### 定时任务
 多线程定时任务框架搭建
+
+### MinIO文件上传和下载
+
+文件上传：选择文件multipartfile上传和base64文件上传
+
+文件上传之后会返回文件地址。
+
+文件下载：直接访问链接
+
+```json
+http://localhost:4399/dictionary/tool/download/minio/test/db9c516a2a404a5ea0b87d0733812f09.jpg
+```
+
+download之前固定，`/minio/test/db9c516a2a404a5ea0b87d0733812f09.jpg`为上传文件之后返回的地址。
 

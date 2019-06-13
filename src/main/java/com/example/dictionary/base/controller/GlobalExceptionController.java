@@ -1,5 +1,6 @@
 package com.example.dictionary.base.controller;
 
+import com.example.dictionary.base.api.ApiState;
 import com.example.dictionary.common.exception.DictionaryException;
 import com.example.dictionary.common.model.ApiResult;
 import lombok.extern.slf4j.Slf4j;
@@ -24,6 +25,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import static com.example.dictionary.common.constant.StringConstant.CONNECTOR;
+import static com.example.dictionary.common.constant.StringConstant.State.DOWNLOAD_FILE_PATH_WRONG;
 import static com.example.dictionary.common.model.ApiResult.STATE.INVALID_PARAM;
 import static com.example.dictionary.common.model.ApiResult.STATE.INVALID_PATH;
 import static com.example.dictionary.common.model.ApiResult.STATE.SYSTEM_ERROR;
@@ -97,7 +99,15 @@ public class GlobalExceptionController extends AbstractErrorController {
         return wrapperException(e, INVALID_PATH);
     }
 
-    private ResponseEntity wrapperException(Exception e, ApiResult.STATE state){
+    /**
+     * 数组索引范围异常
+     */
+    @ExceptionHandler(ArrayIndexOutOfBoundsException.class)
+    public ResponseEntity exceptionHandler(ArrayIndexOutOfBoundsException e){
+        return wrapperException(e, DOWNLOAD_FILE_PATH_WRONG);
+    }
+
+    private ResponseEntity wrapperException(Exception e, ApiState state){
         log.error("系统异常:{}", e);
         ApiResult result = ApiResult.format(state);
         return ResponseEntity.status(HttpStatus.OK).body(result);

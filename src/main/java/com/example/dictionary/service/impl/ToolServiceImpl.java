@@ -60,8 +60,8 @@ public class ToolServiceImpl implements ToolService {
     @Override
     public Optional<InputStream> download(String path) throws Exception{
         String[] strings = path.split(SLASH);
-        String bucketName = strings[6];
-        String objectName = strings[7];
+        String bucketName = strings[5];
+        String objectName = strings[6];
         return minioServiceTemplate.getObject(bucketName, objectName);
     }
 
