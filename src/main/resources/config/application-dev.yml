@@ -17,6 +17,18 @@ minio:
     secret: +ETTDODsitSxUe+CiXp5ypMFEjwcv7IcFbQaiMtm
   url: /minio/%s/%s
 
+#logging
+logging:
+  file:
+    max-history: 3
+  level:
+    root: info
+    org:
+      springframework:
+        jdbc: debug
+      com:
+        example: debug
+
 # db redis
 spring:
   datasource:
