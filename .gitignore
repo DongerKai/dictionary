@@ -24,6 +24,7 @@
 /dist/
 /nbdist/
 /.nb-gradle/
+/log/
 ### Java template
 >>>>>>> 0478dc01b005f221c3e8a8d6215d52ff31aee01d
 # Compiled class file

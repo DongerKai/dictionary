@@ -3,6 +3,26 @@ server:
     context-path: /${dictionary.name}
   port: 4399
 
+#actuator配置
+management:
+  server:
+    port: 4398
+  endpoints:
+    web:
+      base-path: /monitor
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always #显示健康具体信息 默认不显示
+    httptrace:
+      enabled: true #启用httptrace端点
+
+info:
+  name: lll
+  server:
+    port: ${management.server.port}
+
 #系统配置
 dictionary:
   name: dictionary
@@ -16,6 +36,18 @@ minio:
     access: 66K6QAKC0NC4O65HM1SZ
     secret: +ETTDODsitSxUe+CiXp5ypMFEjwcv7IcFbQaiMtm
   url: /minio/%s/%s
+
+#logging
+logging:
+  file:
+    max-history: 3
+  level:
+    root: info
+    org:
+      springframework:
+        jdbc: debug
+      com:
+        example: debug
 
 # db redis
 spring:

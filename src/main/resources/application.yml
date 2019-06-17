@@ -3,3 +3,6 @@ spring:
     name: demo
   profiles:
     active: dev
+
+logging:
+  file: log/${dictionary.name}.log
