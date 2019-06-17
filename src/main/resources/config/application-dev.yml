@@ -3,6 +3,26 @@ server:
     context-path: /${dictionary.name}
   port: 4399
 
+#actuator配置
+management:
+  server:
+    port: 4398
+  endpoints:
+    web:
+      base-path: /monitor
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always #显示健康具体信息 默认不显示
+    httptrace:
+      enabled: true #启用httptrace端点
+
+info:
+  name: lll
+  server:
+    port: ${management.server.port}
+
 #系统配置
 dictionary:
   name: dictionary
