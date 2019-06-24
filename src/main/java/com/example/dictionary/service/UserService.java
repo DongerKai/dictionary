@@ -2,7 +2,7 @@ package com.example.dictionary.service;
 
 import com.baomidou.mybatisplus.service.IService;
 import com.example.dictionary.base.model.PageInfo;
-import com.example.dictionary.model.dataObject.UserDo;
+import com.example.dictionary.model.dataobject.UserDo;
 
 import java.util.List;
 

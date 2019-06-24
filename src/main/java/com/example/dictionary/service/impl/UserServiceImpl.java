@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.plugins.Page;
 import com.example.dictionary.base.model.PageInfo;
 import com.example.dictionary.base.service.AbstractBaseService;
 import com.example.dictionary.mapper.UserMapper;
-import com.example.dictionary.model.dataObject.UserDo;
+import com.example.dictionary.model.dataobject.UserDo;
 import com.example.dictionary.service.UserService;
 import lombok.AllArgsConstructor;
 import org.apache.commons.lang3.StringUtils;

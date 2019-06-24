@@ -16,6 +16,8 @@ public class StringConstant {
     public static final String BLANK = "";
     public static final String DOT = ".";
     public static final String SLASH = "/";
+    public static final String DEFAULT_BOOK_QUEUE = "dev.book.register.default.queue";
+    public static final String MANUAL_BOOK_QUEUE = "dev.book.register.manual.queue";
 
     /*=====================================正则匹配==============================*/
     public static final String P_SPECIAL_CHARACTER = "[%./\\\\?*:|<>$@]";//特殊字符
