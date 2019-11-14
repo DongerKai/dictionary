@@ -71,6 +71,15 @@ spring:
     username: koekchan@163.com
     password: sncv5kfz87
     default-encoding: UTF-8
+  rabbitmq:
+    username: guest
+    password: guest
+    host: 127.0.0.1
+    port: 5672
+    virtual-host: /
+    listener:
+      simple:
+        acknowledge-mode: manual
 
 mail:
   fromMail:

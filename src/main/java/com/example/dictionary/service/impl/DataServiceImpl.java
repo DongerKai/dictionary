@@ -6,7 +6,7 @@ import com.example.dictionary.base.properties.DictionaryProperties;
 import com.example.dictionary.common.exception.DictionaryException;
 import com.example.dictionary.common.model.ApiResult;
 import com.example.dictionary.common.utils.CatchExceptionUtils;
-import com.example.dictionary.model.dataObject.UserDo;
+import com.example.dictionary.model.dataobject.UserDo;
 import com.example.dictionary.service.DataService;
 import com.example.dictionary.service.UserService;
 import lombok.AllArgsConstructor;
@@ -64,7 +64,7 @@ public class DataServiceImpl implements DataService {
 
     private void dateChange(){
         Date today = new Date();//获取当前时间
-        String todayStr = DateFormatUtils.format(today, DATE_FORMAT_01);//将Date日期转换为String，格式为"yyyy-HH-dd HH:mm:ss"
+        String todayStr = DateFormatUtils.format(today, DATE_FORMAT_02);//将Date日期转换为String，格式为"yyyy-HH-dd HH:mm:ss"
         try {
             Date todayDate = DateUtils.parseDate(todayStr, DATE_FORMAT_01);//将格式为"yyyy-HH-dd HH:mm:ss"的String转为Date形式
         } catch (Exception e){

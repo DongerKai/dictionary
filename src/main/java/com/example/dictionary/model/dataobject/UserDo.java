@@ -1,4 +1,4 @@
-package com.example.dictionary.model.dataObject;
+package com.example.dictionary.model.dataobject;
 
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableId;
@@ -16,6 +16,7 @@ import lombok.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 
+import java.io.Serializable;
 import java.util.List;
 
 import static com.example.dictionary.common.constant.StringConstant.P_EMAIL;
@@ -26,7 +27,9 @@ import static com.example.dictionary.common.constant.StringConstant.P_EMAIL;
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = false)
-public class UserDo {
+public class UserDo implements Serializable {
+
+    private static final long serialVersionUID = 6367955674172427359L;
     @ApiModelProperty(name = "id", value = "主键")
     @TableId(value = "id", type = IdType.UUID)
     private String id;

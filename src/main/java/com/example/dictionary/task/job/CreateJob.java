@@ -1,6 +1,6 @@
 package com.example.dictionary.task.job;
 
-import com.example.dictionary.model.dataObject.UserDo;
+import com.example.dictionary.model.dataobject.UserDo;
 import com.example.dictionary.service.UserService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

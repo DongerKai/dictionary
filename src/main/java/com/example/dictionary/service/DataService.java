@@ -2,7 +2,7 @@ package com.example.dictionary.service;
 
 import com.example.dictionary.base.model.PageInfo;
 import com.example.dictionary.common.model.ApiResult;
-import com.example.dictionary.model.dataObject.UserDo;
+import com.example.dictionary.model.dataobject.UserDo;
 
 import javax.servlet.ServletOutputStream;
 import java.util.Map;

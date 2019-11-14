@@ -2,7 +2,7 @@ package com.example.dictionary.controller;
 
 import com.example.dictionary.base.model.PageInfo;
 import com.example.dictionary.common.model.ApiResult;
-import com.example.dictionary.model.dataObject.UserDo;
+import com.example.dictionary.model.dataobject.UserDo;
 import com.example.dictionary.service.DataService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
