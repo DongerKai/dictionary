@@ -15,4 +15,8 @@ public interface ToolService {
     List<String> getUuid(int num);
 
     Optional<InputStream> download(String path) throws Exception;
+
+    String split(String text, String prefix);
+
+    String replace(String text, String replace, String origin);
 }

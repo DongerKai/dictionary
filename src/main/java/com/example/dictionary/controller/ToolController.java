@@ -113,4 +113,24 @@ public class ToolController {
         });
         log.info("发送时间：{}", LocalDateTime.now());
     }
+
+    @ApiOperation("替换")
+    @GetMapping("/replace")
+    public ApiResult<String> replace(@ApiParam(name = "text", value = "文本") @NotBlank(message = "文本不能为空！")
+                                       @RequestParam(value = "text") String text,
+                                   @ApiParam(name = "replace", value = "需要被替换的字符")
+                                   @RequestParam(value = "replace", required = false) String replace,
+                                   @ApiParam(name = "origin", value = "原本的字符")
+                                   @RequestParam(value = "origin", required = false) String origin){
+        return format(SUCCESS, toolService.replace(text, replace, origin));
+    }
+
+    @ApiOperation("添加前缀")
+    @GetMapping("/split")
+    public ApiResult<String> split(@ApiParam(name = "text", value = "文本") @NotBlank(message = "文本不能为空！")
+                                   @RequestParam(value = "text") String text,
+                                   @ApiParam(name = "prefix", value = "前缀")
+                                   @RequestParam(value = "prefix", required = false) String prefix){
+        return format(SUCCESS, toolService.split(text, prefix));
+    }
 }

@@ -9,6 +9,7 @@ public class StringConstant {
 
     /*======================================常量=================================*/
     public static final String DATE_FORMAT_01 = "yyyy-HH-dd HH:mm:ss";
+    public static final String DATE_FORMAT_02 = "yyyy-HH-dd HH:mm:00";
     public static final String GMT_8 = "GMT+8";
     public static final String CONNECTOR = "-";
     public static final String CHARSET_UTF_8 = "UTF-8";

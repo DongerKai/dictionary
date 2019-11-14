@@ -14,4 +14,6 @@ public interface UserMapper extends BaseMapper<UserDo> {
 
     @Select("SELECT * FROM user")
     List<UserDo> selectUserList();
+
+    void updateBatch();
 }

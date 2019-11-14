@@ -3,9 +3,13 @@ package com.example.dictionary.service.impl;
 import com.example.dictionary.access.minio.MinioServiceProperties;
 import com.example.dictionary.access.minio.MinioServiceTemplate;
 import com.example.dictionary.common.utils.AssertUtils;
+import com.example.dictionary.common.utils.CatchExceptionUtils;
 import com.example.dictionary.model.dto.Base64FileDto;
 import com.example.dictionary.service.ToolService;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.time.DateFormatUtils;
+import org.apache.commons.lang3.time.DateUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -24,6 +28,7 @@ import static com.example.dictionary.common.constant.StringConstant.State.FILE_N
  **/
 @Service
 @AllArgsConstructor
+@Slf4j
 public class ToolServiceImpl implements ToolService {
     private MinioServiceTemplate minioServiceTemplate;
     private MinioServiceProperties minioServiceProperties;
@@ -33,7 +38,21 @@ public class ToolServiceImpl implements ToolService {
         List<String> list = new ArrayList<>();
         for (int i = 0; i< num; i++)
             list.add(UUID.randomUUID().toString().replaceAll(CONNECTOR,BLANK));
+        dateChange();
         return list;
+    }
+
+    private void dateChange(){
+        Date today = new Date();//获取当前时间
+        String todayStr = DateFormatUtils.format(today, DATE_FORMAT_02);//将Date日期转换为String，格式为"yyyy-HH-dd HH:mm:ss"
+        Date todayDate = new Date();
+        try {
+            todayDate = DateUtils.parseDate(todayStr, DATE_FORMAT_01);//将格式为"yyyy-HH-dd HH:mm:ss"的String转为Date形式
+        } catch (Exception e){
+            log.error(e.getMessage());}
+        Long endTimestamp = todayDate.getTime()/1000;
+        Long startTimestamp = DateUtils.addMinutes(todayDate, -10).getTime()/1000;
+        log.info("");
     }
 
     @Override
@@ -63,6 +82,20 @@ public class ToolServiceImpl implements ToolService {
         String bucketName = strings[5];
         String objectName = strings[6];
         return minioServiceTemplate.getObject(bucketName, objectName);
+    }
+
+    @Override
+    public String split(String text, String prefix) {
+        String res="";
+        for (String temp : text.split(", ")){
+            res=res+prefix+temp+", ";
+        }
+        return res;
+    }
+
+    @Override
+    public String replace(String text, String replace, String origin) {
+        return text.replaceAll(origin,replace);
     }
 
     private String getObjectName(String fileName){

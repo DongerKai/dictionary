@@ -2,5 +2,34 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.dictionary.mapper.UserMapper">
 
+    <update id="updateBatch">
+        UPDATE iot_terminal_count_number
+        <trim prefix="SET" suffixOverrides=",">
+            <trim prefix="total_count=CASE" suffix="END,">
+                <foreach collection="terminalCountNumberList" item="terminalCountNumber" index="index">
+                    WHEN field_id = #{terminalCountNumber.fieldId} AND type_id = #{terminalCountNumber.typeId}
+                    THEN #{terminalCountNumber.totalCount}
+                </foreach>
+            </trim>
+            <trim prefix="online_count=CASE" suffix="END,">
+                <foreach collection="terminalCountNumberList" item="terminalCountNumber" index="index">
+                    WHEN field_id = #{terminalCountNumber.fieldId} AND type_id = #{terminalCountNumber.typeId}
+                    THEN #{terminalCountNumber.onlineCount}
+                </foreach>
+            </trim>
+            <trim prefix="offline_count=CASE" suffix="END">
+                <foreach collection="terminalCountNumberList" item="terminalCountNumber" index="index">
+                    WHEN field_id = #{terminalCountNumber.fieldId} AND type_id = #{terminalCountNumber.typeId}
+                    THEN #{terminalCountNumber.offlineCount}
+                </foreach>
+            </trim>
+        </trim>
+        <where>
+            type_id IN
+            <foreach collection="terminalCountNumberList" item="terminalCountNumber" open="(" separator="," close=")">
+                #{terminalCountNumber.typeId}
+            </foreach>
+        </where>
+    </update>
 
 </mapper>
